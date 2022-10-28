@@ -15,6 +15,7 @@ import javax.validation.Valid;
 @RequestMapping("/auth/")
 public class AuthController {
 
+
     @PostMapping("login")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
         return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
