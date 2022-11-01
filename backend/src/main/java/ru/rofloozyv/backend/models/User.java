@@ -1,4 +1,4 @@
-package ru.rofloozyv.backend.entities;
+package ru.rofloozyv.backend.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
