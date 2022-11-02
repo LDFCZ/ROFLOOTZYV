@@ -1,30 +1,18 @@
 package ru.rofloozyv.backend.services;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Service;
-import ru.rofloozyv.backend.models.Review;
+import ru.rofloozyv.backend.dto.FullReviewDTO;
 import ru.rofloozyv.backend.dto.MiniReviewDTO;
-import ru.rofloozyv.backend.repositories.ReviewRepository;
 
 import java.util.List;
 
-@Service
-public class ReviewService {
+public interface ReviewService {
 
-    private ReviewRepository reviewRepository;
+    ResponseEntity<List<MiniReviewDTO>> findReviewsByName(String name);
 
-    @Autowired
-    public ReviewService(ReviewRepository reviewRepository) {
-        this.reviewRepository = reviewRepository;
-    }
+    ResponseEntity<List<MiniReviewDTO>> findAllReviews();
 
-    public ResponseEntity<List<MiniReviewDTO>> findReviewsByName(String name) {
-        List<Review> reviewList = reviewRepository.findAllByNameContainingIgnoreCaseAnd(name);
-        return null;
-    }
+    ResponseEntity<?> createNewReview(FullReviewDTO fullReviewDTO);
 
-    public ResponseEntity<List<MiniReviewDTO>> findAllReviews() {
-        return null;
-    }
+    ResponseEntity<FullReviewDTO> getFullReview(Long id);
 }

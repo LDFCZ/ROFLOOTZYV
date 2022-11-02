@@ -46,4 +46,14 @@ public class Review {
     @OneToMany(mappedBy = "review", fetch = FetchType.LAZY,
             cascade = CascadeType.ALL)
     private Set<Comment> comments;
+
+    public Review() {}
+
+    public Review(String reviewName, String shortDescription, String fullDescription, String grade, User user) {
+        this.reviewName = reviewName;
+        this.shortDescription = shortDescription;
+        this.fullDescription = fullDescription;
+        this.grade = grade;
+        this.user = user;
+    }
 }

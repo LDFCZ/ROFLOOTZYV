@@ -1,16 +1,11 @@
 package ru.rofloozyv.backend.services;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import ru.rofloozyv.backend.repositories.UserRepository;
+import org.springframework.http.ResponseEntity;
+import ru.rofloozyv.backend.dto.LoginRequestDTO;
+import ru.rofloozyv.backend.dto.SignupRequestDTO;
 
-@Service
-public class UserService {
+public interface UserService {
+    ResponseEntity<?> registerUser(SignupRequestDTO signupRequestDTO);
 
-    private UserRepository userRepository;
-
-    @Autowired
-    public UserService(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
+    ResponseEntity<?> authenticateUser(LoginRequestDTO loginRequestDTO);
 }

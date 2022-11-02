@@ -11,4 +11,15 @@ public class UserDTO {
 
     @JsonProperty("user_name")
     private String userName;
+
+    @JsonProperty("password")
+    private String password;
+
+    public UserDTO() {}
+
+    public UserDTO(Long id, String userName, String password) {
+        this.id = id;
+        this.userName = userName;
+        this.password = password;
+    }
 }

@@ -13,7 +13,7 @@ public class FullReviewDTO {
     private Long id;
 
     @JsonProperty("review_name")
-    private String name;
+    private String reviewName;
 
     @JsonProperty("author_name")
     private UserDTO user;

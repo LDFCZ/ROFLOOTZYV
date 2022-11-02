@@ -1,7 +1,4 @@
 package ru.rofloozyv.backend.services;
 
-import org.springframework.stereotype.Service;
-
-@Service
-public class CommentService {
+public interface CommentService {
 }

@@ -40,4 +40,11 @@ public class User {
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY,
             cascade = CascadeType.ALL)
     private Set<Comment> comments;
+
+    public User() {}
+
+    public User(String userName, String password) {
+        this.userName = userName;
+        this.password = password;
+    }
 }
