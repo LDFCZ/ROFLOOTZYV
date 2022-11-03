@@ -5,6 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.rofloozyv.backend.dto.FullReviewDTO;
 import ru.rofloozyv.backend.dto.MiniReviewDTO;
+import ru.rofloozyv.backend.services.ReviewService;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -13,18 +14,38 @@ import java.util.List;
 @RequestMapping("/")
 public class ReviewController {
 
+    private ReviewService reviewService;
+
+    public  ReviewController(ReviewService reviewService) {
+        this.reviewService = reviewService;
+    }
+
     @GetMapping("reviews")
     public ResponseEntity<List<MiniReviewDTO>> getAllMiniReviews(@RequestParam(required = false) String name) {
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        try {
+            if (name != null)
+                return reviewService.findReviewsByName(name);
+            return reviewService.findAllReviews();
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @GetMapping("reviews/{id}")
     public ResponseEntity<FullReviewDTO> getFullReviewById(@PathVariable Long id) {
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        try {
+            return reviewService.getFullReview(id);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @PostMapping("reviews")
     public ResponseEntity<?> createNewReview(@Valid @RequestBody FullReviewDTO fullReviewDTO) {
-        return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        try {
+            return reviewService.createNewReview(fullReviewDTO);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 }

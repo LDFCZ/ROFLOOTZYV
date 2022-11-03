@@ -33,7 +33,7 @@ public class ReviewServiceImpl implements ReviewService{
 
     @Override
     public ResponseEntity<List<MiniReviewDTO>> findReviewsByName(String name) {
-        List<Review> reviewList = reviewRepository.findAllByNameContainingIgnoreCaseAnd(name);
+        List<Review> reviewList = reviewRepository.findAllByReviewNameContainingIgnoreCase(name);
 
         if (reviewList.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
