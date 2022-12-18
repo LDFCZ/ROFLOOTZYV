@@ -15,6 +15,7 @@ import java.util.Set;
 @Table(name = "Reviews")
 public class Review {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
 

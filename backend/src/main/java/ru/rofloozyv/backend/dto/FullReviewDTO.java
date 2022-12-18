@@ -18,9 +18,9 @@ public class FullReviewDTO {
     @JsonProperty("review_name")
     private String reviewName;
 
-    @NotBlank
     @JsonProperty("author_name")
     private UserDTO user;
+    
     @NotBlank
     @Size(max = 50)
     @JsonProperty("short_description")
