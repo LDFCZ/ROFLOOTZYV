@@ -56,9 +56,9 @@ public class CommentServiceImpl implements CommentService {
         Review review = reviewOp.get();
         Comment comment = commentMapper.toCommentModel(commentDTO);
         comment.setReview(review);
+        review.getComments().add(commentMapper.toCommentModel(commentDTO));
         commentRepository.save(comment);
-        //review.getComments().add(commentMapper.toCommentModel(commentDTO));
-        //reviewRepository.save(review);
+    
         return ResponseEntity.ok(new MessageResponseDTO("new comment successfully saved"));
     }
 }
