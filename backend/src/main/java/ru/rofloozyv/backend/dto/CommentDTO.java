@@ -12,7 +12,6 @@ public class CommentDTO {
     @JsonProperty("id")
     private Long id;
 
-    @NotBlank
     @JsonProperty("author_name")
     private UserDTO user;
 
