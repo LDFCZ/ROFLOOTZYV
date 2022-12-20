@@ -48,16 +48,17 @@ public class CommentServiceImpl implements CommentService {
     }
 
     public ResponseEntity<?> addNewComment(Long reviewId, CommentDTO commentDTO) {
-        System.out.println(reviewId);
         Optional<Review> reviewOp = reviewRepository.findById(reviewId);
 
         if (reviewOp.isEmpty()) {
             return ResponseEntity.badRequest().body(new MessageResponseDTO("review not found"));
         }
         Review review = reviewOp.get();
-        System.out.println(review);
-        review.getComments().add(commentMapper.toCommentModel(commentDTO));
-        reviewRepository.save(review);
+        Comment comment = commentMapper.toCommentModel(commentDTO);
+        comment.setReview(review);
+        commentRepository.save(commentMapper.toCommentModel(commentDTO));
+        //review.getComments().add(commentMapper.toCommentModel(commentDTO));
+        //reviewRepository.save(review);
         return ResponseEntity.ok(new MessageResponseDTO("new comment successfully saved"));
     }
 }
